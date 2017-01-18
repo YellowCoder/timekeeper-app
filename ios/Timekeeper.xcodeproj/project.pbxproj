@@ -1033,6 +1033,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.Timekeeper;
 				PRODUCT_NAME = Timekeeper;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1059,6 +1060,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.Timekeeper;
 				PRODUCT_NAME = Timekeeper;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
