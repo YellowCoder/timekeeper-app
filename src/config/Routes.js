@@ -1,9 +1,9 @@
 import React from 'react'
 import { Scene, Router } from 'react-native-router-flux'
 
-import styles from '../containers/AppStyle'
+import styles from '../scenes/root/AppStyle'
 
-import Login from '../containers/login'
+import Login from '../scenes/login'
 
 const routes = (
   <Router>
