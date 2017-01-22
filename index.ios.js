@@ -1,7 +1,7 @@
 import React from 'react'
 import { AppRegistry } from 'react-native'
 
-import App from './src/containers/App'
+import App from './src/scenes/root/App'
 import OAuthManager from 'react-native-oauth'
 
 const config =  {
