@@ -1,9 +1,18 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, TouchableOpacity, Text } from 'react-native'
+
+import Oauth from '../../config/Oauth'
 
 import styles from './styles'
 
 class Login extends Component {
+
+  loginWithProvider(provider) {
+    Oauth.authorize(provider)
+      .then(resp => console.log(resp, 'SUCESSOO'))
+      .catch(err => console.log(err, 'EROOOOOOO'))
+  }
+
   render() {
     return(
       <View style={ styles.container }>
@@ -11,18 +20,30 @@ class Login extends Component {
           <Text style={ styles.title }>Login</Text>
         </View>
         <View style={ styles.buttonContainer }>
-          <View style={ styles.loginButton }>
+          <TouchableOpacity
+            style={ styles.loginButton }
+            onPress={ this.loginWithProvider }
+            >
             <Text>Login with twitter</Text>
-          </View>
-          <View style={ styles.loginButton }>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={ styles.loginButton }
+            onPress={ this.loginWithProvider }
+            >
             <Text>Login with facebook</Text>
-          </View>
-          <View style={ styles.loginButton }>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={ styles.loginButton }
+            onPress={ this.loginWithProvider }
+            >
             <Text>Login with google</Text>
-          </View>
-          <View style={ styles.loginButton }>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={ styles.loginButton }
+            onPress={ this.loginWithProvider }
+            >
             <Text>Login with slack</Text>
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
     )
