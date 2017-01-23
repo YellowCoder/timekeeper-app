@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
 import { View, TouchableOpacity, Text } from 'react-native'
+import { connect } from 'react-redux'
 
 import Oauth from '../../config/Oauth'
+import dispatchMap from './dispatchMap'
 
 import styles from './styles'
 
+@connect(null, dispatchMap)
 class Login extends Component {
-
   loginWithProvider(provider) {
     Oauth.authorize(provider)
-      .then(resp => console.log(resp, 'SUCESSOO'))
+      .then(resp => this.props.login(resp.response.credentials.access_token))
       .catch(err => console.log(err, 'EROOOOOOO'))
   }
 
@@ -22,25 +24,25 @@ class Login extends Component {
         <View style={ styles.buttonContainer }>
           <TouchableOpacity
             style={ styles.loginButton }
-            onPress={ this.loginWithProvider }
+            onPress={ () => { this.loginWithProvider('twitter') }}
             >
             <Text>Login with twitter</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={ styles.loginButton }
-            onPress={ this.loginWithProvider }
+            onPress={ () => { this.loginWithProvider('facebook') }}
             >
             <Text>Login with facebook</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={ styles.loginButton }
-            onPress={ this.loginWithProvider }
+            onPress={ () => { this.loginWithProvider('google') }}
             >
             <Text>Login with google</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={ styles.loginButton }
-            onPress={ this.loginWithProvider }
+            onPress={ () => { this.loginWithProvider('slack') }}
             >
             <Text>Login with slack</Text>
           </TouchableOpacity>
