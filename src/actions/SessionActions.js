@@ -1,8 +1,9 @@
 import { createAction } from 'redux-actions'
+import { login } from '../utils/Session'
 
-export const login = createAction(
+export const doLogin = createAction(
   'LOGIN',
-  (accessToken) => {
-    console.log('SSO TOKEN', accessToken)
+  (jwtToken) => {
+    console.log('SSO TOKEN', jwtToken)
   }
 )

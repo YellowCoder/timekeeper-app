@@ -6,7 +6,7 @@ const initialState = {
 }
 
 const SessionReducer = handleActions({
-  [actions.login]: () => ({
+  [actions.doLogin]: () => ({
     isLogged: true
   })
 }, initialState)

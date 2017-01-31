@@ -1,9 +1,17 @@
 import { AsyncStorage } from 'react-native'
+import { Actions } from 'react-native-router-flux'
 
-export function login(accessToken) {
-  return await AsyncStorage.setItem('accessToken', accessToken)
+export async function login(jwtToken) {
+  try {
+    await AsyncStorage.setItem('jwtToken', jwtToken)
+  } catch (error) {
+  }
 }
 
-export function logout() {
-  return await AsyncStorage.removeItem('accessToken')
+export async function logout() {
+  try {
+    return await AsyncStorage.removeItem('jwtToken')
+  } catch (error) {
+  }
+  Actions.login()
 }
