@@ -13,15 +13,47 @@ import styles from './styles'
 @graphql(mutation)
 class Login extends Component {
   loginWithProvider(provider) {
-    Oauth.authorize(provider)
+    Oauth.authorize(provider, {scopes: 'email,profile'})
       .then(resp => {
-        this.props.mutate({ variables: { ssoProvider: provider, ssoToken: resp.response.credentials.access_token}})
-          .then(({data}) => {
-            console.log('------------', data)
-          })
-        //this.props.doLogin(resp.response.credentials.access_token)
+        this.getUserInfo(provider, resp)
       })
       .catch(err => console.log(err, 'EROOOOOOO'))
+  }
+
+  getUserInfo(provider, authorizationResponse) {
+    if (provider == 'google') {
+      const googleUrl = 'https://www.googleapis.com/plus/v1/people/me';
+      Oauth
+        .makeRequest('google', googleUrl)
+          .then(resp => {
+            this.saveUser({
+              name: resp.data.displayName,
+              uuid: authorizationResponse.response.identifier
+            })
+          })
+    }
+
+    if (provider == 'facebook') {
+      Oauth
+      .makeRequest('facebook', '/me')
+        .then(resp => {
+          this.saveUser({
+            name: resp.data.name,
+            uuid: authorizationResponse.response.identifier
+          })
+        })
+    }
+  }
+
+  saveUser(info) {
+    this.props.mutate({ variables: info})
+      .then(({data}) => {
+        console.log('----------------')
+        console.log('----------------')
+        console.log(data)
+        console.log('----------------')
+        console.log('----------------')
+      })
   }
 
   render() {
@@ -33,12 +65,6 @@ class Login extends Component {
         <View style={ styles.buttonContainer }>
           <TouchableOpacity
             style={ styles.loginButton }
-            onPress={ () => { this.loginWithProvider('twitter') }}
-            >
-            <Text>Login with twitter</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={ styles.loginButton }
             onPress={ () => { this.loginWithProvider('facebook') }}
             >
             <Text>Login with facebook</Text>
@@ -48,12 +74,6 @@ class Login extends Component {
             onPress={ () => { this.loginWithProvider('google') }}
             >
             <Text>Login with google</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={ styles.loginButton }
-            onPress={ () => { this.loginWithProvider('slack') }}
-            >
-            <Text>Login with slack</Text>
           </TouchableOpacity>
         </View>
       </View>

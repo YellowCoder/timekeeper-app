@@ -1,12 +1,11 @@
 import gql from 'graphql-tag';
 
 const LoginMutation = gql`
-  mutation Login($ssoToken: String, $ssoProvider: String) {
-    sign_up(input: {sso_token: $ssoToken, sso_provider: $ssoProvider}){
+  mutation Login($name: String, $uuid: String) {
+    sign_up(input: {name: $name, uuid: $uuid}){
       user {
         name
-        email
-        jwt_token
+        uuid
       }
     }
   }
