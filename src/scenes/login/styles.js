@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     padding: 5
   },
   titleContainer: {
-    flex: 2,
+    flex: 3,
     paddingTop: 70,
     alignItems: 'center',
     justifyContent: 'flex-start'
