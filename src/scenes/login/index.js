@@ -13,11 +13,11 @@ import styles from './styles'
 @graphql(mutation)
 class Login extends Component {
   loginWithProvider(provider) {
-    Oauth.authorize(provider, {scopes: 'email,profile'})
+    Oauth.authorize(provider, {scopes: 'email'})
       .then(resp => {
         this.getUserInfo(provider, resp)
       })
-      .catch(err => console.log(err, 'EROOOOOOO'))
+      .catch(err => console.log(err, 'AUTHORIZATION ERROR'))
   }
 
   getUserInfo(provider, authorizationResponse) {
@@ -26,22 +26,28 @@ class Login extends Component {
       Oauth
         .makeRequest('google', googleUrl)
           .then(resp => {
+            Oauth.deauthorize('google')
             this.saveUser({
               name: resp.data.displayName,
-              uuid: authorizationResponse.response.identifier
+              uuid: resp.data.id,
+              provider
             })
           })
+          .catch(err => console.log(err, 'GOOGLE ERROR'))
     }
 
     if (provider == 'facebook') {
       Oauth
-      .makeRequest('facebook', '/me')
-        .then(resp => {
-          this.saveUser({
-            name: resp.data.name,
-            uuid: authorizationResponse.response.identifier
+        .makeRequest('facebook', '/me')
+          .then(resp => {
+            Oauth.deauthorize('facebook')
+            this.saveUser({
+              name: resp.data.name,
+              uuid: resp.data.id,
+              provider
+            })
           })
-        })
+          .catch(err => console.log(err, 'FACEBOOK ERROR'))
     }
   }
 
