@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, TouchableOpacity, Text } from 'react-native'
 import { connect } from 'react-redux'
-import { graphql } from 'react-apollo';
+import { graphql } from 'react-apollo'
 
 import mutation from './mutation'
 import Oauth from '../../config/Oauth'
@@ -62,7 +62,7 @@ class Login extends Component {
     return(
       <View style={ styles.container }>
         <View style={ styles.titleContainer }>
-          <Text style={ styles.title }>Login</Text>
+          <Text style={ styles.title }>Timekeeper</Text>
         </View>
         <View style={ styles.buttonContainer }>
           <TouchableOpacity
@@ -82,7 +82,5 @@ class Login extends Component {
     )
   }
 }
-
-export const component = graphql(mutation)(Login)
 
 export default Login

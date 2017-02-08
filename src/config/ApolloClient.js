@@ -1,5 +1,6 @@
 import ApolloClient, { createNetworkInterface } from 'apollo-client'
 import { AsyncStorage } from 'react-native'
+import { Actions } from 'react-native-router-flux'
 
 import { logout } from '../utils/Session'
 
@@ -11,7 +12,7 @@ networkInterface.use([ {
     if (!req.options.headers) req.options.headers = {}
 
     AsyncStorage.getItem('uuid').then((data) => {
-      req.options.headers.authorization = data || null
+      req.options.headers.authentication = data || null
       req.options.headers.accept = 'version=1'
       next()
     })
@@ -20,7 +21,11 @@ networkInterface.use([ {
 
 networkInterface.useAfter([ {
   applyAfterware({ response }, next) {
-    if (response.status === 401) logout()
+    if (response.status === 401) {
+      logout()
+      Actions.login()
+    }
+
     next()
   }
 } ])

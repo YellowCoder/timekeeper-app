@@ -3,7 +3,9 @@ import { Actions } from 'react-native-router-flux'
 
 export async function login(uuid) {
   try {
-    await AsyncStorage.setItem('uuid', uuid)
+    await AsyncStorage.setItem('uuid', uuid, () => {
+      Actions.worksheet()
+    })
   } catch (error) {
   }
 }
