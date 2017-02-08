@@ -3,7 +3,7 @@ import { login } from '../utils/Session'
 
 export const doLogin = createAction(
   'LOGIN',
-  (jwtToken) => {
-    console.log('SSO TOKEN', jwtToken)
+  (uuid) => {
+    login(uuid)
   }
 )

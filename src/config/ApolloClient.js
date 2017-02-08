@@ -10,7 +10,7 @@ networkInterface.use([ {
   applyMiddleware(req, next) {
     if (!req.options.headers) req.options.headers = {}
 
-    AsyncStorage.getItem('jwtToken').then((data) => {
+    AsyncStorage.getItem('uuid').then((data) => {
       req.options.headers.authorization = data || null
       req.options.headers.accept = 'version=1'
       next()

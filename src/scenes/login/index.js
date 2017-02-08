@@ -54,11 +54,7 @@ class Login extends Component {
   saveUser(info) {
     this.props.mutate({ variables: info})
       .then(({data}) => {
-        console.log('----------------')
-        console.log('----------------')
-        console.log(data)
-        console.log('----------------')
-        console.log('----------------')
+        this.props.login(data.sign_up.user.uuid)
       })
   }
 
