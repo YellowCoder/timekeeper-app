@@ -4,6 +4,7 @@ const QueryWorksheets = gql`
   query Worksheets {
     worksheets {
       id
+      action
     }
   }
 `
