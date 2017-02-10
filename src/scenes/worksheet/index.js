@@ -29,10 +29,13 @@ class Worksheet extends Component {
     return ds.cloneWithRows(this.props.data.worksheets)
   }
 
-  renderItem() {
-    <View>
-      <Text> aaa </Text>
-    </View>
+  renderItem(rowData) {
+    return(
+      <View>
+        <Text> { rowData.action } </Text>
+        <Text> { rowData.created_at } </Text>
+      </View>
+    )
   }
 
   render() {
@@ -43,7 +46,7 @@ class Worksheet extends Component {
           worksheets &&
           <ListView
             dataSource={ this.dataSource() }
-            renderRow={(rowData) => <Text>{ rowData.action }</Text>}
+            renderRow={ this.renderItem }
           />
         }
       </ScrollView>
