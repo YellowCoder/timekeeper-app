@@ -13,9 +13,11 @@
     "graphql-tag": "^1.2.3",
     "react": "15.4.2",
     "react-apollo": "^0.8.1",
-    "react-native": "0.40.0",
+    "react-native": "0.42.0",
+    "react-native-elements": "^0.9.7",
     "react-native-oauth": "^2.1.11",
     "react-native-router-flux": "^3.37.0",
+    "react-native-vector-icons": "^4.0.0",
     "react-redux": "^5.0.2",
     "redux-actions": "^1.2.0"
   },

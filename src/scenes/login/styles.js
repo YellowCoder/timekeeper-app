@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     padding: 5
   },
   titleContainer: {
-    flex: 3,
+    flex: 2,
     paddingTop: 70,
     alignItems: 'center',
     justifyContent: 'flex-start'
@@ -19,13 +19,6 @@ const styles = StyleSheet.create({
     borderColor: 'red',
     borderStyle: 'solid',
     flexDirection: 'column'
-  },
-  loginButton: {
-    margin: 4,
-    flex: 1,
-    backgroundColor: '#80BE84',
-    alignItems: 'center',
-    justifyContent: 'center'
   }
 })
 

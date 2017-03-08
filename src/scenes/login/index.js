@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, TouchableOpacity, Text } from 'react-native'
 import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
+import { SocialIcon } from 'react-native-elements'
 
 import mutation from './mutation'
 import Oauth from '../../config/Oauth'
@@ -66,16 +67,22 @@ class Login extends Component {
         </View>
         <View style={ styles.buttonContainer }>
           <TouchableOpacity
-            style={ styles.loginButton }
             onPress={ () => { this.loginWithProvider('facebook') }}
             >
-            <Text>Login with facebook</Text>
+            <SocialIcon
+              title='Sign In With Facebook'
+              button
+              type='facebook'
+            />
           </TouchableOpacity>
           <TouchableOpacity
-            style={ styles.loginButton }
             onPress={ () => { this.loginWithProvider('google') }}
             >
-            <Text>Login with google</Text>
+            <SocialIcon
+              title='Sign In With Facebook'
+              button
+              type='google-plus-official'
+            />
           </TouchableOpacity>
         </View>
       </View>

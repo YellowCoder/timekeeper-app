@@ -5,6 +5,7 @@ import { View, Text } from 'react-native'
 
 import configureStore from '../../config/Store'
 import Routes from '../../config/Routes'
+import Sidebar from '../../components/sidebar'
 
 import styles from './AppStyle'
 
@@ -13,11 +14,13 @@ const store = configureStore()
 class App extends Component {
   render() {
     return(
-      <ApolloProvider client={ ApolloClient } store={ store }>
-        <View style={ styles.root }>
-          { Routes }
-        </View>
-      </ApolloProvider>
+      <Sidebar>
+        <ApolloProvider client={ ApolloClient } store={ store }>
+          <View style={ styles.root }>
+            { Routes }
+          </View>
+        </ApolloProvider>
+      </Sidebar>
     )
   }
 }
